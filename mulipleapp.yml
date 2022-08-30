@@ -1,0 +1,25 @@
+---
+- hosts: app
+  tasks:
+    - name: install multiple apps if tis not instaled
+      package:
+        name: "{{ item }}"
+        state: present
+      when: ansible_os_family == "RedHat"  
+      with_items:
+        - git
+        - java
+        - tree
+        - httpd
+
+    - name: install multiple apps its not installed
+      package:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+      with_items:
+        - git
+        - openjdk-11-jdk
+        - tree
+        - apache2

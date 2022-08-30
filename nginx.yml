@@ -1,0 +1,19 @@
+---
+- hosts: web
+  tasks:
+    - name: install Epel-repo
+      ansible.builtin.command: amazon-linux-extras install epel -y
+    - name: install nginx if not install
+      ansible.builtin.yum:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: start nginix if it is not started
+      service:
+        name: nginx
+        state: started
+    - name: changing the port number
+      template:
+        src: /root/playbooks/nginx.conf.j2
+        dest: /etc/httpd/conf/nginx.conf
+

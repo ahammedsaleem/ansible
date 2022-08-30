@@ -1,0 +1,14 @@
+---
+- hosts: app
+  tasks:
+    - name: install tree if its not install
+      yum: name=tree state=present
+      when: ansible_os_family == "RedHat"
+
+    - name: install tree if its not install
+      apt:
+        name: tree 
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+      

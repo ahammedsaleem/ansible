@@ -1,0 +1,15 @@
+---
+- hosts: web
+  gather_facts: false
+  tasks:
+
+    - name: create a directaory
+      ansible.builtin.file:
+        path: /opt/saleem
+        state: directory
+
+    - name: create a file
+      file: path=/opt/salee.txt state=touch
+  
+      #- name: deleting a file 
+      #  file: path=/opt/saleem state=absent
